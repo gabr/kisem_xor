@@ -78,6 +78,72 @@ namespace XOR
             textBox_n2s2.Text = String.Format(format, tmp.values[2]);
         }
 
+        private bool GetNetwork()
+        {
+            double tmp;
+            double[] input = new double[2];
+
+            if (!double.TryParse(textBox_in0.Text, out tmp))
+                return false;
+
+            input[0] = tmp;
+
+            if (!double.TryParse(textBox_in1.Text, out tmp))
+                return false;
+
+            input[1] = tmp;
+
+            double[] weights0 = new double[3];
+
+            if (!double.TryParse(textBox_n0w0.Text, out tmp))
+                return false;
+            weights0[0] = tmp;
+
+            if (!double.TryParse(textBox_n0w1.Text, out tmp))
+                return false;
+            weights0[1] = tmp;
+
+            if (!double.TryParse(textBox_n0w2.Text, out tmp))
+                return false;
+            weights0[2] = tmp;
+
+            double[] weights1 = new double[3];
+
+            if (!double.TryParse(textBox_n1w0.Text, out tmp))
+                return false;
+            weights1[0] = tmp;
+
+            if (!double.TryParse(textBox_n1w1.Text, out tmp))
+                return false;
+            weights1[1] = tmp;
+
+            if (!double.TryParse(textBox_n1w2.Text, out tmp))
+                return false;
+            weights1[2] = tmp;
+
+            double[] weights2 = new double[3];
+
+            if (!double.TryParse(textBox_n2w0.Text, out tmp))
+                return false;
+            weights2[0] = tmp;
+
+            if (!double.TryParse(textBox_n2w1.Text, out tmp))
+                return false;
+            weights2[1] = tmp;
+
+            if (!double.TryParse(textBox_n2w2.Text, out tmp))
+                return false;
+            weights2[2] = tmp;
+
+            _net.Inputs = input;
+
+            _net.SetNeuron(0, weights0);
+            _net.SetNeuron(1, weights1);
+            _net.SetNeuron(2, weights2);
+
+            return true;
+        }
+
         private void XORForm_FormClosing(object sender, FormClosingEventArgs e)
         {
             Log("Closing application...");
@@ -92,6 +158,12 @@ namespace XOR
 
         private void button_Calculate_Click(object sender, EventArgs e)
         {
+            if (!GetNetwork())
+            {
+                Log("Wrong network data!");
+                return;
+            }
+
             Log("Recalculate network...");
             _net.Calculate();
             FillNetwork();
@@ -218,6 +290,19 @@ namespace XOR
             }
 
             return result;
+        }
+
+        public bool SetNeuron(int neuronIndex, double[] weights)
+        {
+            if (neuronIndex < 0 || neuronIndex > 2)
+                return false;
+
+            var indexes = _connections.Where(t => t.Item2 == neuronIndex + 3).Select(t => t.Item1).ToList<int>();
+
+            for (int i = 0; i < indexes.Count; i++)
+                w[indexes[i], neuronIndex + 3] = weights[i];
+
+            return true;
         }
 
         private double Activation(double sum)
