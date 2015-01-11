@@ -23,5 +23,10 @@ namespace XOR
         {
             listBox.Items.Add(string.Format(" > {0}", message));
         }
+
+        private void XORForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Log("Closing application...");
+        }
     }
 }
