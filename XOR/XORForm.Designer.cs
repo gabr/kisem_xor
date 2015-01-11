@@ -31,6 +31,10 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XORForm));
             this.splitContainer = new System.Windows.Forms.SplitContainer();
             this.listBox = new System.Windows.Forms.ListBox();
+            this.button_RandomWeight = new System.Windows.Forms.Button();
+            this.textBox_n2s = new System.Windows.Forms.TextBox();
+            this.textBox_n1s = new System.Windows.Forms.TextBox();
+            this.textBox_n0s = new System.Windows.Forms.TextBox();
             this.textBox_n2out = new System.Windows.Forms.TextBox();
             this.textBox_n1out = new System.Windows.Forms.TextBox();
             this.textBox_n0out = new System.Windows.Forms.TextBox();
@@ -55,9 +59,7 @@
             this.textBox_n0s0 = new System.Windows.Forms.TextBox();
             this.textBox_n0w0 = new System.Windows.Forms.TextBox();
             this.pictureBoxNetwork = new System.Windows.Forms.PictureBox();
-            this.textBox_n0s = new System.Windows.Forms.TextBox();
-            this.textBox_n1s = new System.Windows.Forms.TextBox();
-            this.textBox_n2s = new System.Windows.Forms.TextBox();
+            this.button_Calculate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -83,6 +85,8 @@
             // splitContainer.Panel2
             // 
             this.splitContainer.Panel2.BackColor = System.Drawing.Color.White;
+            this.splitContainer.Panel2.Controls.Add(this.button_Calculate);
+            this.splitContainer.Panel2.Controls.Add(this.button_RandomWeight);
             this.splitContainer.Panel2.Controls.Add(this.textBox_n2s);
             this.splitContainer.Panel2.Controls.Add(this.textBox_n1s);
             this.splitContainer.Panel2.Controls.Add(this.textBox_n0s);
@@ -125,6 +129,41 @@
             this.listBox.Name = "listBox";
             this.listBox.Size = new System.Drawing.Size(1256, 270);
             this.listBox.TabIndex = 0;
+            // 
+            // button_RandomWeight
+            // 
+            this.button_RandomWeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button_RandomWeight.Location = new System.Drawing.Point(1049, 370);
+            this.button_RandomWeight.Name = "button_RandomWeight";
+            this.button_RandomWeight.Size = new System.Drawing.Size(179, 41);
+            this.button_RandomWeight.TabIndex = 31;
+            this.button_RandomWeight.Text = "Random weight";
+            this.button_RandomWeight.UseVisualStyleBackColor = true;
+            this.button_RandomWeight.Click += new System.EventHandler(this.button_RandomWeight_Click);
+            // 
+            // textBox_n2s
+            // 
+            this.textBox_n2s.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBox_n2s.Location = new System.Drawing.Point(885, 229);
+            this.textBox_n2s.Name = "textBox_n2s";
+            this.textBox_n2s.Size = new System.Drawing.Size(57, 27);
+            this.textBox_n2s.TabIndex = 30;
+            // 
+            // textBox_n1s
+            // 
+            this.textBox_n1s.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBox_n1s.Location = new System.Drawing.Point(337, 370);
+            this.textBox_n1s.Name = "textBox_n1s";
+            this.textBox_n1s.Size = new System.Drawing.Size(57, 27);
+            this.textBox_n1s.TabIndex = 29;
+            // 
+            // textBox_n0s
+            // 
+            this.textBox_n0s.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBox_n0s.Location = new System.Drawing.Point(337, 120);
+            this.textBox_n0s.Name = "textBox_n0s";
+            this.textBox_n0s.Size = new System.Drawing.Size(57, 27);
+            this.textBox_n0s.TabIndex = 28;
             // 
             // textBox_n2out
             // 
@@ -323,29 +362,16 @@
             this.pictureBoxNetwork.TabIndex = 0;
             this.pictureBoxNetwork.TabStop = false;
             // 
-            // textBox_n0s
+            // button_Calculate
             // 
-            this.textBox_n0s.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_n0s.Location = new System.Drawing.Point(337, 120);
-            this.textBox_n0s.Name = "textBox_n0s";
-            this.textBox_n0s.Size = new System.Drawing.Size(57, 27);
-            this.textBox_n0s.TabIndex = 28;
-            // 
-            // textBox_n1s
-            // 
-            this.textBox_n1s.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_n1s.Location = new System.Drawing.Point(337, 370);
-            this.textBox_n1s.Name = "textBox_n1s";
-            this.textBox_n1s.Size = new System.Drawing.Size(57, 27);
-            this.textBox_n1s.TabIndex = 29;
-            // 
-            // textBox_n2s
-            // 
-            this.textBox_n2s.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_n2s.Location = new System.Drawing.Point(885, 229);
-            this.textBox_n2s.Name = "textBox_n2s";
-            this.textBox_n2s.Size = new System.Drawing.Size(57, 27);
-            this.textBox_n2s.TabIndex = 30;
+            this.button_Calculate.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button_Calculate.Location = new System.Drawing.Point(1049, 417);
+            this.button_Calculate.Name = "button_Calculate";
+            this.button_Calculate.Size = new System.Drawing.Size(179, 41);
+            this.button_Calculate.TabIndex = 32;
+            this.button_Calculate.Text = "Calculate";
+            this.button_Calculate.UseVisualStyleBackColor = true;
+            this.button_Calculate.Click += new System.EventHandler(this.button_Calculate_Click);
             // 
             // XORForm
             // 
@@ -398,6 +424,8 @@
         private System.Windows.Forms.TextBox textBox_n2s;
         private System.Windows.Forms.TextBox textBox_n1s;
         private System.Windows.Forms.TextBox textBox_n0s;
+        private System.Windows.Forms.Button button_RandomWeight;
+        private System.Windows.Forms.Button button_Calculate;
     }
 }
 
