@@ -55,6 +55,9 @@
             this.textBox_n0s0 = new System.Windows.Forms.TextBox();
             this.textBox_n0w0 = new System.Windows.Forms.TextBox();
             this.pictureBoxNetwork = new System.Windows.Forms.PictureBox();
+            this.textBox_n0s = new System.Windows.Forms.TextBox();
+            this.textBox_n1s = new System.Windows.Forms.TextBox();
+            this.textBox_n2s = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
             this.splitContainer.Panel1.SuspendLayout();
             this.splitContainer.Panel2.SuspendLayout();
@@ -80,6 +83,9 @@
             // splitContainer.Panel2
             // 
             this.splitContainer.Panel2.BackColor = System.Drawing.Color.White;
+            this.splitContainer.Panel2.Controls.Add(this.textBox_n2s);
+            this.splitContainer.Panel2.Controls.Add(this.textBox_n1s);
+            this.splitContainer.Panel2.Controls.Add(this.textBox_n0s);
             this.splitContainer.Panel2.Controls.Add(this.textBox_n2out);
             this.splitContainer.Panel2.Controls.Add(this.textBox_n1out);
             this.splitContainer.Panel2.Controls.Add(this.textBox_n0out);
@@ -317,13 +323,37 @@
             this.pictureBoxNetwork.TabIndex = 0;
             this.pictureBoxNetwork.TabStop = false;
             // 
+            // textBox_n0s
+            // 
+            this.textBox_n0s.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBox_n0s.Location = new System.Drawing.Point(337, 120);
+            this.textBox_n0s.Name = "textBox_n0s";
+            this.textBox_n0s.Size = new System.Drawing.Size(57, 27);
+            this.textBox_n0s.TabIndex = 28;
+            // 
+            // textBox_n1s
+            // 
+            this.textBox_n1s.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBox_n1s.Location = new System.Drawing.Point(337, 370);
+            this.textBox_n1s.Name = "textBox_n1s";
+            this.textBox_n1s.Size = new System.Drawing.Size(57, 27);
+            this.textBox_n1s.TabIndex = 29;
+            // 
+            // textBox_n2s
+            // 
+            this.textBox_n2s.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBox_n2s.Location = new System.Drawing.Point(885, 229);
+            this.textBox_n2s.Name = "textBox_n2s";
+            this.textBox_n2s.Size = new System.Drawing.Size(57, 27);
+            this.textBox_n2s.TabIndex = 30;
+            // 
             // XORForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1256, 788);
             this.Controls.Add(this.splitContainer);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "XORForm";
             this.Text = "Multilayer perceptron - XOR";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.XORForm_FormClosing);
@@ -365,6 +395,9 @@
         private System.Windows.Forms.TextBox textBox_n0s1;
         private System.Windows.Forms.TextBox textBox_n0s0;
         private System.Windows.Forms.TextBox textBox_n0w0;
+        private System.Windows.Forms.TextBox textBox_n2s;
+        private System.Windows.Forms.TextBox textBox_n1s;
+        private System.Windows.Forms.TextBox textBox_n0s;
     }
 }
 

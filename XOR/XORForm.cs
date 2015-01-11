@@ -42,6 +42,22 @@ namespace XOR
 
         private List<Tuple<int, int>> _connections = new List<Tuple<int, int>>();
 
+        public double[] Inputs
+        {
+            set
+            {
+                for (int i = 0; i < value.Length; i++)
+                    u[i] = value[i];
+            }
+        }
+        public double Output
+        {
+            get
+            {
+                return u[u.Length - 1];
+            }
+        }
+
         public Network()
         {
             for (int i = 0; i < _size; i++)
@@ -67,14 +83,18 @@ namespace XOR
             _connections.Add(Tuple.Create(3, 4));
         }
 
-        private void RandomWeights()
+        public void RandomWeights()
         {
-            for (int i = 0; i < _size; i++)
-                for (int j = 0; j < _size; j++)
-                    w[i, j] = 0.0;
-
             foreach (Tuple<int, int> connection in _connections)
                 w[connection.Item1, connection.Item2] = (((double)_rand.Next(0, 100)) - 50.0) / 100.0;
         }
+
+        private double Activation(double sum)
+        {
+            return 1.0 / (1 + Math.Exp(-sum));
+        }
+
+
+
     }
 }
