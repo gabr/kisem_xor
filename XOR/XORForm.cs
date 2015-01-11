@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,15 +18,7 @@ namespace XOR
         public XORForm()
         {
             InitializeComponent();
-
-            Log("Starting application...");
-
             FillNetwork();
-        }
-
-        private void Log(string message)
-        {
-            listBox.Items.Add(string.Format(" > {0}", message));
         }
 
         private void FillNetwork()
@@ -144,14 +137,8 @@ namespace XOR
             return true;
         }
 
-        private void XORForm_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            Log("Closing application...");
-        }
-
         private void button_RandomWeight_Click(object sender, EventArgs e)
         {
-            Log("Generating random network...");
             _net.RandomWeight();
             FillNetwork();
         }
@@ -160,11 +147,69 @@ namespace XOR
         {
             if (!GetNetwork())
             {
-                Log("Wrong network data!");
+                MessageBox.Show("Wrong network data!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            Log("Recalculate network...");
+            _net.Calculate();
+            FillNetwork();
+        }
+
+        private void button_Train_Click(object sender, EventArgs e)
+        {
+            double result;
+            if (!GetNetwork() || !double.TryParse(textBox_n2out.Text, out result))
+            {
+                MessageBox.Show("Wrong network data!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            _net.Calculate();
+            //_net.Train(result);
+            FillNetwork();
+        }
+
+        private void saveAsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (saveFileDialog.ShowDialog(this) != System.Windows.Forms.DialogResult.OK)
+                return;
+
+            string format = "{0} {1} {2}";
+            using (StreamWriter sw = new StreamWriter(saveFileDialog.FileName))
+            {
+                Network.Neuron tmp;
+
+                for (int i = 0; i < 3; i++)
+                {
+                    tmp = _net.GetNeuron(i);
+                    sw.WriteLine(string.Format(format, tmp.weights[0], tmp.weights[1], tmp.weights[2]));
+                }
+
+                sw.Close();
+            }
+        }
+
+        private void openToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog.ShowDialog(this) != System.Windows.Forms.DialogResult.OK)
+                return;
+
+            String line;
+            double[] weights = new double[3];
+            using (StreamReader sr = new StreamReader(openFileDialog.FileName))
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    line = sr.ReadLine();
+                    string[] data = line.Split(' ');
+
+                    for (int j = 0; j < 3; j++)
+                        weights[j] = double.Parse(data[j]);
+
+                    _net.SetNeuron(i, weights);
+                }
+            }
+
             _net.Calculate();
             FillNetwork();
         }

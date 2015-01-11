@@ -29,8 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XORForm));
-            this.splitContainer = new System.Windows.Forms.SplitContainer();
-            this.listBox = new System.Windows.Forms.ListBox();
+            this.button_Train = new System.Windows.Forms.Button();
             this.button_Calculate = new System.Windows.Forms.Button();
             this.button_RandomWeight = new System.Windows.Forms.Button();
             this.textBox_n2s = new System.Windows.Forms.TextBox();
@@ -60,80 +59,31 @@
             this.textBox_n0s0 = new System.Windows.Forms.TextBox();
             this.textBox_n0w0 = new System.Windows.Forms.TextBox();
             this.pictureBoxNetwork = new System.Windows.Forms.PictureBox();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).BeginInit();
-            this.splitContainer.Panel1.SuspendLayout();
-            this.splitContainer.Panel2.SuspendLayout();
-            this.splitContainer.SuspendLayout();
+            this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
+            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.menuStrip = new System.Windows.Forms.MenuStrip();
+            this.fIleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.saveAsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxNetwork)).BeginInit();
+            this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // splitContainer
+            // button_Train
             // 
-            this.splitContainer.BackColor = System.Drawing.Color.White;
-            this.splitContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
-            this.splitContainer.IsSplitterFixed = true;
-            this.splitContainer.Location = new System.Drawing.Point(0, 0);
-            this.splitContainer.Name = "splitContainer";
-            this.splitContainer.Orientation = System.Windows.Forms.Orientation.Horizontal;
-            // 
-            // splitContainer.Panel1
-            // 
-            this.splitContainer.Panel1.BackColor = System.Drawing.Color.White;
-            this.splitContainer.Panel1.Controls.Add(this.listBox);
-            // 
-            // splitContainer.Panel2
-            // 
-            this.splitContainer.Panel2.BackColor = System.Drawing.Color.White;
-            this.splitContainer.Panel2.Controls.Add(this.button_Calculate);
-            this.splitContainer.Panel2.Controls.Add(this.button_RandomWeight);
-            this.splitContainer.Panel2.Controls.Add(this.textBox_n2s);
-            this.splitContainer.Panel2.Controls.Add(this.textBox_n1s);
-            this.splitContainer.Panel2.Controls.Add(this.textBox_n0s);
-            this.splitContainer.Panel2.Controls.Add(this.textBox_n2out);
-            this.splitContainer.Panel2.Controls.Add(this.textBox_n1out);
-            this.splitContainer.Panel2.Controls.Add(this.textBox_n0out);
-            this.splitContainer.Panel2.Controls.Add(this.textBox_in1);
-            this.splitContainer.Panel2.Controls.Add(this.textBox_in0);
-            this.splitContainer.Panel2.Controls.Add(this.textBox_n2w2);
-            this.splitContainer.Panel2.Controls.Add(this.textBox_n2w1);
-            this.splitContainer.Panel2.Controls.Add(this.textBox_n2s2);
-            this.splitContainer.Panel2.Controls.Add(this.textBox_n2s1);
-            this.splitContainer.Panel2.Controls.Add(this.textBox_n2s0);
-            this.splitContainer.Panel2.Controls.Add(this.textBox_n2w0);
-            this.splitContainer.Panel2.Controls.Add(this.textBox_n1w2);
-            this.splitContainer.Panel2.Controls.Add(this.textBox_n1w1);
-            this.splitContainer.Panel2.Controls.Add(this.textBox_n1s2);
-            this.splitContainer.Panel2.Controls.Add(this.textBox_n1s1);
-            this.splitContainer.Panel2.Controls.Add(this.textBox_n1s0);
-            this.splitContainer.Panel2.Controls.Add(this.textBox_n1w0);
-            this.splitContainer.Panel2.Controls.Add(this.textBox_n0w2);
-            this.splitContainer.Panel2.Controls.Add(this.textBox_n0w1);
-            this.splitContainer.Panel2.Controls.Add(this.textBox_n0s2);
-            this.splitContainer.Panel2.Controls.Add(this.textBox_n0s1);
-            this.splitContainer.Panel2.Controls.Add(this.textBox_n0s0);
-            this.splitContainer.Panel2.Controls.Add(this.textBox_n0w0);
-            this.splitContainer.Panel2.Controls.Add(this.pictureBoxNetwork);
-            this.splitContainer.Panel2.Padding = new System.Windows.Forms.Padding(10);
-            this.splitContainer.Size = new System.Drawing.Size(1256, 788);
-            this.splitContainer.SplitterDistance = 270;
-            this.splitContainer.TabIndex = 0;
-            // 
-            // listBox
-            // 
-            this.listBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.listBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.listBox.FormattingEnabled = true;
-            this.listBox.ItemHeight = 20;
-            this.listBox.Location = new System.Drawing.Point(0, 0);
-            this.listBox.Name = "listBox";
-            this.listBox.Size = new System.Drawing.Size(1256, 270);
-            this.listBox.TabIndex = 0;
+            this.button_Train.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button_Train.Location = new System.Drawing.Point(880, 454);
+            this.button_Train.Name = "button_Train";
+            this.button_Train.Size = new System.Drawing.Size(179, 41);
+            this.button_Train.TabIndex = 33;
+            this.button_Train.Text = "Train";
+            this.button_Train.UseVisualStyleBackColor = true;
+            this.button_Train.Click += new System.EventHandler(this.button_Train_Click);
             // 
             // button_Calculate
             // 
             this.button_Calculate.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button_Calculate.Location = new System.Drawing.Point(1049, 417);
+            this.button_Calculate.Location = new System.Drawing.Point(1065, 454);
             this.button_Calculate.Name = "button_Calculate";
             this.button_Calculate.Size = new System.Drawing.Size(179, 41);
             this.button_Calculate.TabIndex = 32;
@@ -144,7 +94,7 @@
             // button_RandomWeight
             // 
             this.button_RandomWeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button_RandomWeight.Location = new System.Drawing.Point(1049, 370);
+            this.button_RandomWeight.Location = new System.Drawing.Point(1065, 407);
             this.button_RandomWeight.Name = "button_RandomWeight";
             this.button_RandomWeight.Size = new System.Drawing.Size(179, 41);
             this.button_RandomWeight.TabIndex = 31;
@@ -155,7 +105,7 @@
             // textBox_n2s
             // 
             this.textBox_n2s.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_n2s.Location = new System.Drawing.Point(885, 229);
+            this.textBox_n2s.Location = new System.Drawing.Point(890, 224);
             this.textBox_n2s.Name = "textBox_n2s";
             this.textBox_n2s.ReadOnly = true;
             this.textBox_n2s.Size = new System.Drawing.Size(57, 27);
@@ -164,7 +114,7 @@
             // textBox_n1s
             // 
             this.textBox_n1s.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_n1s.Location = new System.Drawing.Point(337, 370);
+            this.textBox_n1s.Location = new System.Drawing.Point(334, 367);
             this.textBox_n1s.Name = "textBox_n1s";
             this.textBox_n1s.ReadOnly = true;
             this.textBox_n1s.Size = new System.Drawing.Size(57, 27);
@@ -173,7 +123,7 @@
             // textBox_n0s
             // 
             this.textBox_n0s.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_n0s.Location = new System.Drawing.Point(337, 120);
+            this.textBox_n0s.Location = new System.Drawing.Point(334, 117);
             this.textBox_n0s.Name = "textBox_n0s";
             this.textBox_n0s.ReadOnly = true;
             this.textBox_n0s.Size = new System.Drawing.Size(57, 27);
@@ -182,16 +132,15 @@
             // textBox_n2out
             // 
             this.textBox_n2out.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_n2out.Location = new System.Drawing.Point(1081, 210);
+            this.textBox_n2out.Location = new System.Drawing.Point(1149, 224);
             this.textBox_n2out.Name = "textBox_n2out";
-            this.textBox_n2out.ReadOnly = true;
             this.textBox_n2out.Size = new System.Drawing.Size(57, 27);
             this.textBox_n2out.TabIndex = 27;
             // 
             // textBox_n1out
             // 
             this.textBox_n1out.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_n1out.Location = new System.Drawing.Point(540, 351);
+            this.textBox_n1out.Location = new System.Drawing.Point(537, 348);
             this.textBox_n1out.Name = "textBox_n1out";
             this.textBox_n1out.ReadOnly = true;
             this.textBox_n1out.Size = new System.Drawing.Size(57, 27);
@@ -200,7 +149,7 @@
             // textBox_n0out
             // 
             this.textBox_n0out.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_n0out.Location = new System.Drawing.Point(540, 101);
+            this.textBox_n0out.Location = new System.Drawing.Point(537, 98);
             this.textBox_n0out.Name = "textBox_n0out";
             this.textBox_n0out.ReadOnly = true;
             this.textBox_n0out.Size = new System.Drawing.Size(57, 27);
@@ -209,7 +158,7 @@
             // textBox_in1
             // 
             this.textBox_in1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_in1.Location = new System.Drawing.Point(65, 151);
+            this.textBox_in1.Location = new System.Drawing.Point(59, 148);
             this.textBox_in1.Name = "textBox_in1";
             this.textBox_in1.Size = new System.Drawing.Size(57, 27);
             this.textBox_in1.TabIndex = 21;
@@ -217,7 +166,7 @@
             // textBox_in0
             // 
             this.textBox_in0.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_in0.Location = new System.Drawing.Point(65, 100);
+            this.textBox_in0.Location = new System.Drawing.Point(59, 97);
             this.textBox_in0.Name = "textBox_in0";
             this.textBox_in0.Size = new System.Drawing.Size(57, 27);
             this.textBox_in0.TabIndex = 20;
@@ -225,7 +174,7 @@
             // textBox_n2w2
             // 
             this.textBox_n2w2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_n2w2.Location = new System.Drawing.Point(707, 261);
+            this.textBox_n2w2.Location = new System.Drawing.Point(712, 256);
             this.textBox_n2w2.Name = "textBox_n2w2";
             this.textBox_n2w2.Size = new System.Drawing.Size(57, 27);
             this.textBox_n2w2.TabIndex = 18;
@@ -233,7 +182,7 @@
             // textBox_n2w1
             // 
             this.textBox_n2w1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_n2w1.Location = new System.Drawing.Point(707, 210);
+            this.textBox_n2w1.Location = new System.Drawing.Point(712, 205);
             this.textBox_n2w1.Name = "textBox_n2w1";
             this.textBox_n2w1.Size = new System.Drawing.Size(57, 27);
             this.textBox_n2w1.TabIndex = 17;
@@ -241,7 +190,7 @@
             // textBox_n2s2
             // 
             this.textBox_n2s2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_n2s2.Location = new System.Drawing.Point(796, 279);
+            this.textBox_n2s2.Location = new System.Drawing.Point(801, 274);
             this.textBox_n2s2.Name = "textBox_n2s2";
             this.textBox_n2s2.ReadOnly = true;
             this.textBox_n2s2.Size = new System.Drawing.Size(57, 27);
@@ -250,7 +199,7 @@
             // textBox_n2s1
             // 
             this.textBox_n2s1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_n2s1.Location = new System.Drawing.Point(796, 229);
+            this.textBox_n2s1.Location = new System.Drawing.Point(801, 224);
             this.textBox_n2s1.Name = "textBox_n2s1";
             this.textBox_n2s1.ReadOnly = true;
             this.textBox_n2s1.Size = new System.Drawing.Size(57, 27);
@@ -259,7 +208,7 @@
             // textBox_n2s0
             // 
             this.textBox_n2s0.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_n2s0.Location = new System.Drawing.Point(796, 178);
+            this.textBox_n2s0.Location = new System.Drawing.Point(801, 173);
             this.textBox_n2s0.Name = "textBox_n2s0";
             this.textBox_n2s0.ReadOnly = true;
             this.textBox_n2s0.Size = new System.Drawing.Size(57, 27);
@@ -268,7 +217,7 @@
             // textBox_n2w0
             // 
             this.textBox_n2w0.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_n2w0.Location = new System.Drawing.Point(707, 157);
+            this.textBox_n2w0.Location = new System.Drawing.Point(712, 152);
             this.textBox_n2w0.Name = "textBox_n2w0";
             this.textBox_n2w0.Size = new System.Drawing.Size(57, 27);
             this.textBox_n2w0.TabIndex = 13;
@@ -276,7 +225,7 @@
             // textBox_n1w2
             // 
             this.textBox_n1w2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_n1w2.Location = new System.Drawing.Point(172, 403);
+            this.textBox_n1w2.Location = new System.Drawing.Point(169, 400);
             this.textBox_n1w2.Name = "textBox_n1w2";
             this.textBox_n1w2.Size = new System.Drawing.Size(57, 27);
             this.textBox_n1w2.TabIndex = 12;
@@ -284,7 +233,7 @@
             // textBox_n1w1
             // 
             this.textBox_n1w1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_n1w1.Location = new System.Drawing.Point(172, 352);
+            this.textBox_n1w1.Location = new System.Drawing.Point(169, 349);
             this.textBox_n1w1.Name = "textBox_n1w1";
             this.textBox_n1w1.Size = new System.Drawing.Size(57, 27);
             this.textBox_n1w1.TabIndex = 11;
@@ -292,7 +241,7 @@
             // textBox_n1s2
             // 
             this.textBox_n1s2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_n1s2.Location = new System.Drawing.Point(249, 420);
+            this.textBox_n1s2.Location = new System.Drawing.Point(246, 417);
             this.textBox_n1s2.Name = "textBox_n1s2";
             this.textBox_n1s2.ReadOnly = true;
             this.textBox_n1s2.Size = new System.Drawing.Size(57, 27);
@@ -301,7 +250,7 @@
             // textBox_n1s1
             // 
             this.textBox_n1s1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_n1s1.Location = new System.Drawing.Point(249, 370);
+            this.textBox_n1s1.Location = new System.Drawing.Point(246, 367);
             this.textBox_n1s1.Name = "textBox_n1s1";
             this.textBox_n1s1.ReadOnly = true;
             this.textBox_n1s1.Size = new System.Drawing.Size(57, 27);
@@ -310,7 +259,7 @@
             // textBox_n1s0
             // 
             this.textBox_n1s0.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_n1s0.Location = new System.Drawing.Point(249, 319);
+            this.textBox_n1s0.Location = new System.Drawing.Point(246, 316);
             this.textBox_n1s0.Name = "textBox_n1s0";
             this.textBox_n1s0.ReadOnly = true;
             this.textBox_n1s0.Size = new System.Drawing.Size(57, 27);
@@ -319,7 +268,7 @@
             // textBox_n1w0
             // 
             this.textBox_n1w0.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_n1w0.Location = new System.Drawing.Point(172, 299);
+            this.textBox_n1w0.Location = new System.Drawing.Point(169, 296);
             this.textBox_n1w0.Name = "textBox_n1w0";
             this.textBox_n1w0.Size = new System.Drawing.Size(57, 27);
             this.textBox_n1w0.TabIndex = 7;
@@ -327,7 +276,7 @@
             // textBox_n0w2
             // 
             this.textBox_n0w2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_n0w2.Location = new System.Drawing.Point(172, 153);
+            this.textBox_n0w2.Location = new System.Drawing.Point(169, 150);
             this.textBox_n0w2.Name = "textBox_n0w2";
             this.textBox_n0w2.Size = new System.Drawing.Size(57, 27);
             this.textBox_n0w2.TabIndex = 6;
@@ -335,7 +284,7 @@
             // textBox_n0w1
             // 
             this.textBox_n0w1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_n0w1.Location = new System.Drawing.Point(172, 102);
+            this.textBox_n0w1.Location = new System.Drawing.Point(169, 99);
             this.textBox_n0w1.Name = "textBox_n0w1";
             this.textBox_n0w1.Size = new System.Drawing.Size(57, 27);
             this.textBox_n0w1.TabIndex = 5;
@@ -343,7 +292,7 @@
             // textBox_n0s2
             // 
             this.textBox_n0s2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_n0s2.Location = new System.Drawing.Point(249, 170);
+            this.textBox_n0s2.Location = new System.Drawing.Point(246, 167);
             this.textBox_n0s2.Name = "textBox_n0s2";
             this.textBox_n0s2.ReadOnly = true;
             this.textBox_n0s2.Size = new System.Drawing.Size(57, 27);
@@ -352,7 +301,7 @@
             // textBox_n0s1
             // 
             this.textBox_n0s1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_n0s1.Location = new System.Drawing.Point(249, 120);
+            this.textBox_n0s1.Location = new System.Drawing.Point(246, 117);
             this.textBox_n0s1.Name = "textBox_n0s1";
             this.textBox_n0s1.ReadOnly = true;
             this.textBox_n0s1.Size = new System.Drawing.Size(57, 27);
@@ -361,7 +310,7 @@
             // textBox_n0s0
             // 
             this.textBox_n0s0.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_n0s0.Location = new System.Drawing.Point(249, 69);
+            this.textBox_n0s0.Location = new System.Drawing.Point(246, 66);
             this.textBox_n0s0.Name = "textBox_n0s0";
             this.textBox_n0s0.ReadOnly = true;
             this.textBox_n0s0.Size = new System.Drawing.Size(57, 27);
@@ -370,7 +319,7 @@
             // textBox_n0w0
             // 
             this.textBox_n0w0.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_n0w0.Location = new System.Drawing.Point(172, 49);
+            this.textBox_n0w0.Location = new System.Drawing.Point(169, 46);
             this.textBox_n0w0.Name = "textBox_n0w0";
             this.textBox_n0w0.Size = new System.Drawing.Size(57, 27);
             this.textBox_n0w0.TabIndex = 1;
@@ -381,37 +330,101 @@
             this.pictureBoxNetwork.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.pictureBoxNetwork.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pictureBoxNetwork.InitialImage = null;
-            this.pictureBoxNetwork.Location = new System.Drawing.Point(10, 10);
+            this.pictureBoxNetwork.Location = new System.Drawing.Point(0, 24);
             this.pictureBoxNetwork.Name = "pictureBoxNetwork";
-            this.pictureBoxNetwork.Size = new System.Drawing.Size(1236, 494);
+            this.pictureBoxNetwork.Size = new System.Drawing.Size(1256, 483);
             this.pictureBoxNetwork.SizeMode = System.Windows.Forms.PictureBoxSizeMode.AutoSize;
             this.pictureBoxNetwork.TabIndex = 0;
             this.pictureBoxNetwork.TabStop = false;
+            // 
+            // openFileDialog
+            // 
+            this.openFileDialog.FileName = "openFileDialog1";
+            // 
+            // menuStrip
+            // 
+            this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.fIleToolStripMenuItem});
+            this.menuStrip.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip.Name = "menuStrip";
+            this.menuStrip.Size = new System.Drawing.Size(1256, 24);
+            this.menuStrip.TabIndex = 34;
+            this.menuStrip.Text = "menuStrip1";
+            // 
+            // fIleToolStripMenuItem
+            // 
+            this.fIleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveAsToolStripMenuItem,
+            this.openToolStripMenuItem});
+            this.fIleToolStripMenuItem.Name = "fIleToolStripMenuItem";
+            this.fIleToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
+            this.fIleToolStripMenuItem.Text = "FIle";
+            // 
+            // saveAsToolStripMenuItem
+            // 
+            this.saveAsToolStripMenuItem.Name = "saveAsToolStripMenuItem";
+            this.saveAsToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.saveAsToolStripMenuItem.Text = "Save as";
+            this.saveAsToolStripMenuItem.Click += new System.EventHandler(this.saveAsToolStripMenuItem_Click);
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.openToolStripMenuItem.Text = "Open";
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
             // 
             // XORForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1256, 788);
-            this.Controls.Add(this.splitContainer);
+            this.BackColor = System.Drawing.Color.White;
+            this.ClientSize = new System.Drawing.Size(1256, 507);
+            this.Controls.Add(this.textBox_n2s);
+            this.Controls.Add(this.button_Train);
+            this.Controls.Add(this.textBox_n1s);
+            this.Controls.Add(this.textBox_n0s);
+            this.Controls.Add(this.button_Calculate);
+            this.Controls.Add(this.textBox_n2out);
+            this.Controls.Add(this.button_RandomWeight);
+            this.Controls.Add(this.textBox_n1out);
+            this.Controls.Add(this.textBox_n0out);
+            this.Controls.Add(this.textBox_n0s0);
+            this.Controls.Add(this.textBox_in1);
+            this.Controls.Add(this.textBox_n0w0);
+            this.Controls.Add(this.textBox_in0);
+            this.Controls.Add(this.textBox_n0s1);
+            this.Controls.Add(this.textBox_n2w2);
+            this.Controls.Add(this.textBox_n0s2);
+            this.Controls.Add(this.textBox_n2w1);
+            this.Controls.Add(this.textBox_n0w1);
+            this.Controls.Add(this.textBox_n2s2);
+            this.Controls.Add(this.textBox_n0w2);
+            this.Controls.Add(this.textBox_n2s1);
+            this.Controls.Add(this.textBox_n1w0);
+            this.Controls.Add(this.textBox_n2s0);
+            this.Controls.Add(this.textBox_n1s0);
+            this.Controls.Add(this.textBox_n2w0);
+            this.Controls.Add(this.textBox_n1s1);
+            this.Controls.Add(this.textBox_n1w2);
+            this.Controls.Add(this.textBox_n1s2);
+            this.Controls.Add(this.textBox_n1w1);
+            this.Controls.Add(this.pictureBoxNetwork);
+            this.Controls.Add(this.menuStrip);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.MainMenuStrip = this.menuStrip;
             this.Name = "XORForm";
             this.Text = "Multilayer perceptron - XOR";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.XORForm_FormClosing);
-            this.splitContainer.Panel1.ResumeLayout(false);
-            this.splitContainer.Panel2.ResumeLayout(false);
-            this.splitContainer.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer)).EndInit();
-            this.splitContainer.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxNetwork)).EndInit();
+            this.menuStrip.ResumeLayout(false);
+            this.menuStrip.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.SplitContainer splitContainer;
-        private System.Windows.Forms.ListBox listBox;
         private System.Windows.Forms.PictureBox pictureBoxNetwork;
         private System.Windows.Forms.TextBox textBox_n2out;
         private System.Windows.Forms.TextBox textBox_n1out;
@@ -441,6 +454,13 @@
         private System.Windows.Forms.TextBox textBox_n0s;
         private System.Windows.Forms.Button button_RandomWeight;
         private System.Windows.Forms.Button button_Calculate;
+        private System.Windows.Forms.Button button_Train;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog;
+        private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.MenuStrip menuStrip;
+        private System.Windows.Forms.ToolStripMenuItem fIleToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem saveAsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
     }
 }
 
