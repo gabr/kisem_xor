@@ -240,11 +240,17 @@ namespace XOR
         {
             int stepsCounter = 0;
             double tmpError = 0;
-            double error, maxNumber, trainCoef;
 
-            if (   !double.TryParse(textBox_trainError.Text, out error)
-                || !double.TryParse(textBox_trainMaxSteps.Text, out maxNumber)
-                || !double.TryParse(textBox_trainCoef.Text, out trainCoef))
+            double error, maxNumber, trainCoef;
+            error = maxNumber = trainCoef = 0.0;
+
+            try
+            {
+                error = double.Parse(textBox_trainError.Text);
+                maxNumber = double.Parse(textBox_trainMaxSteps.Text);
+                trainCoef = double.Parse(textBox_trainCoef.Text);
+            }
+            catch (Exception)
             {
                 MessageBox.Show("Wrong network data!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -258,27 +264,19 @@ namespace XOR
                 {
                     string[] values = data.Split(' ');
 
-                    double tmp;
+                    double result = 0;
                     double[] inputs = new double[2];
 
-                    if (!double.TryParse(values[0], out tmp))
+                    try
                     {
-                        MessageBox.Show("Wrong network data!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
+                        for (int i = 0; i < 2; i++)
+                            inputs[i] = double.Parse(values[i]);
+
+                        result = double.Parse(values[2]);
                     }
-                    inputs[0] = tmp;
-
-                    if (!double.TryParse(values[1], out tmp))
+                    catch(Exception)
                     {
-                        MessageBox.Show("Wrong network data!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-                    inputs[1] = tmp;
-
-
-                    if (!double.TryParse(values[2], out tmp))
-                    {
-                        MessageBox.Show("Wrong network data!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Wrong network training data!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
@@ -286,9 +284,9 @@ namespace XOR
                     _net.Calculate();
 
                     stepsCounter++;
-                    tmpError += 0.5 * Math.Pow((tmp - _net.Output), 2);
+                    tmpError += 0.5 * Math.Pow((result - _net.Output), 2);
 
-                    _net.Train(tmp, trainCoef);
+                    _net.Train(result, trainCoef);
 
                 }
             }
@@ -296,6 +294,8 @@ namespace XOR
 
             _net.Calculate();
             FillNetwork();
+
+            MessageBox.Show("Finished by reaching " + (tmpError <= error ? "min error" : "max num of steps"), "End", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 
