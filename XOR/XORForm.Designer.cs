@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(XORForm));
-            this.button_Train = new System.Windows.Forms.Button();
+            this.button_ManualTrain = new System.Windows.Forms.Button();
             this.button_Calculate = new System.Windows.Forms.Button();
             this.button_RandomWeight = new System.Windows.Forms.Button();
             this.textBox_n2s = new System.Windows.Forms.TextBox();
@@ -69,25 +69,31 @@
             this.label_result = new System.Windows.Forms.Label();
             this.label_trainCoef = new System.Windows.Forms.Label();
             this.textBox_trainCoef = new System.Windows.Forms.TextBox();
+            this.button_AutoTrain = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBox_trainError = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.textBox_trainMaxSteps = new System.Windows.Forms.TextBox();
+            this.textBox_trainData = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxNetwork)).BeginInit();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
-            // button_Train
+            // button_ManualTrain
             // 
-            this.button_Train.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button_Train.Location = new System.Drawing.Point(880, 454);
-            this.button_Train.Name = "button_Train";
-            this.button_Train.Size = new System.Drawing.Size(179, 41);
-            this.button_Train.TabIndex = 33;
-            this.button_Train.Text = "Train";
-            this.button_Train.UseVisualStyleBackColor = true;
-            this.button_Train.Click += new System.EventHandler(this.button_Train_Click);
+            this.button_ManualTrain.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button_ManualTrain.Location = new System.Drawing.Point(1065, 454);
+            this.button_ManualTrain.Name = "button_ManualTrain";
+            this.button_ManualTrain.Size = new System.Drawing.Size(179, 41);
+            this.button_ManualTrain.TabIndex = 33;
+            this.button_ManualTrain.Text = "Manual Train";
+            this.button_ManualTrain.UseVisualStyleBackColor = true;
+            this.button_ManualTrain.Click += new System.EventHandler(this.button_ManualTrain_Click);
             // 
             // button_Calculate
             // 
             this.button_Calculate.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button_Calculate.Location = new System.Drawing.Point(1065, 454);
+            this.button_Calculate.Location = new System.Drawing.Point(1065, 91);
             this.button_Calculate.Name = "button_Calculate";
             this.button_Calculate.Size = new System.Drawing.Size(179, 41);
             this.button_Calculate.TabIndex = 32;
@@ -98,7 +104,7 @@
             // button_RandomWeight
             // 
             this.button_RandomWeight.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button_RandomWeight.Location = new System.Drawing.Point(1065, 407);
+            this.button_RandomWeight.Location = new System.Drawing.Point(1065, 44);
             this.button_RandomWeight.Name = "button_RandomWeight";
             this.button_RandomWeight.Size = new System.Drawing.Size(179, 41);
             this.button_RandomWeight.TabIndex = 31;
@@ -382,7 +388,7 @@
             // textBox_result
             // 
             this.textBox_result.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_result.Location = new System.Drawing.Point(817, 461);
+            this.textBox_result.Location = new System.Drawing.Point(1187, 421);
             this.textBox_result.Name = "textBox_result";
             this.textBox_result.Size = new System.Drawing.Size(57, 27);
             this.textBox_result.TabIndex = 35;
@@ -391,7 +397,7 @@
             // 
             this.label_result.AutoSize = true;
             this.label_result.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_result.Location = new System.Drawing.Point(745, 464);
+            this.label_result.Location = new System.Drawing.Point(1115, 424);
             this.label_result.Name = "label_result";
             this.label_result.Size = new System.Drawing.Size(66, 22);
             this.label_result.TabIndex = 36;
@@ -401,7 +407,7 @@
             // 
             this.label_trainCoef.AutoSize = true;
             this.label_trainCoef.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label_trainCoef.Location = new System.Drawing.Point(715, 432);
+            this.label_trainCoef.Location = new System.Drawing.Point(1085, 392);
             this.label_trainCoef.Name = "label_trainCoef";
             this.label_trainCoef.Size = new System.Drawing.Size(96, 22);
             this.label_trainCoef.TabIndex = 38;
@@ -410,10 +416,67 @@
             // textBox_trainCoef
             // 
             this.textBox_trainCoef.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox_trainCoef.Location = new System.Drawing.Point(817, 429);
+            this.textBox_trainCoef.Location = new System.Drawing.Point(1187, 389);
             this.textBox_trainCoef.Name = "textBox_trainCoef";
             this.textBox_trainCoef.Size = new System.Drawing.Size(57, 27);
             this.textBox_trainCoef.TabIndex = 37;
+            // 
+            // button_AutoTrain
+            // 
+            this.button_AutoTrain.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button_AutoTrain.Location = new System.Drawing.Point(880, 454);
+            this.button_AutoTrain.Name = "button_AutoTrain";
+            this.button_AutoTrain.Size = new System.Drawing.Size(179, 41);
+            this.button_AutoTrain.TabIndex = 39;
+            this.button_AutoTrain.Text = "Auto Train";
+            this.button_AutoTrain.UseVisualStyleBackColor = true;
+            this.button_AutoTrain.Click += new System.EventHandler(this.button_AutoTrain_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label1.Location = new System.Drawing.Point(930, 392);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 22);
+            this.label1.TabIndex = 43;
+            this.label1.Text = "Error:";
+            // 
+            // textBox_trainError
+            // 
+            this.textBox_trainError.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBox_trainError.Location = new System.Drawing.Point(1002, 389);
+            this.textBox_trainError.Name = "textBox_trainError";
+            this.textBox_trainError.Size = new System.Drawing.Size(57, 27);
+            this.textBox_trainError.TabIndex = 42;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label2.Location = new System.Drawing.Point(889, 424);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(96, 22);
+            this.label2.TabIndex = 41;
+            this.label2.Text = "Max steps:";
+            // 
+            // textBox_trainMaxSteps
+            // 
+            this.textBox_trainMaxSteps.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBox_trainMaxSteps.Location = new System.Drawing.Point(1002, 421);
+            this.textBox_trainMaxSteps.Name = "textBox_trainMaxSteps";
+            this.textBox_trainMaxSteps.Size = new System.Drawing.Size(57, 27);
+            this.textBox_trainMaxSteps.TabIndex = 40;
+            // 
+            // textBox_trainData
+            // 
+            this.textBox_trainData.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBox_trainData.Location = new System.Drawing.Point(669, 386);
+            this.textBox_trainData.Multiline = true;
+            this.textBox_trainData.Name = "textBox_trainData";
+            this.textBox_trainData.ScrollBars = System.Windows.Forms.ScrollBars.Both;
+            this.textBox_trainData.Size = new System.Drawing.Size(205, 109);
+            this.textBox_trainData.TabIndex = 44;
             // 
             // XORForm
             // 
@@ -421,12 +484,18 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(1256, 507);
+            this.Controls.Add(this.textBox_trainData);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.textBox_trainError);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.textBox_trainMaxSteps);
+            this.Controls.Add(this.button_AutoTrain);
             this.Controls.Add(this.label_trainCoef);
             this.Controls.Add(this.textBox_trainCoef);
             this.Controls.Add(this.label_result);
             this.Controls.Add(this.textBox_result);
             this.Controls.Add(this.textBox_n2s);
-            this.Controls.Add(this.button_Train);
+            this.Controls.Add(this.button_ManualTrain);
             this.Controls.Add(this.textBox_n1s);
             this.Controls.Add(this.textBox_n0s);
             this.Controls.Add(this.button_Calculate);
@@ -499,7 +568,7 @@
         private System.Windows.Forms.TextBox textBox_n0s;
         private System.Windows.Forms.Button button_RandomWeight;
         private System.Windows.Forms.Button button_Calculate;
-        private System.Windows.Forms.Button button_Train;
+        private System.Windows.Forms.Button button_ManualTrain;
         private System.Windows.Forms.SaveFileDialog saveFileDialog;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.MenuStrip menuStrip;
@@ -510,6 +579,12 @@
         private System.Windows.Forms.Label label_result;
         private System.Windows.Forms.Label label_trainCoef;
         private System.Windows.Forms.TextBox textBox_trainCoef;
+        private System.Windows.Forms.Button button_AutoTrain;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox textBox_trainError;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.TextBox textBox_trainMaxSteps;
+        private System.Windows.Forms.TextBox textBox_trainData;
     }
 }
 

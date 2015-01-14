@@ -155,7 +155,7 @@ namespace XOR
             FillNetwork();
         }
 
-        private void button_Train_Click(object sender, EventArgs e)
+        private void button_ManualTrain_Click(object sender, EventArgs e)
         {
             double result, trainCoef;
             if (!GetNetwork() || !double.TryParse(textBox_result.Text, out result) || !double.TryParse(textBox_trainCoef.Text, out trainCoef))
@@ -213,6 +213,55 @@ namespace XOR
 
             _net.Calculate();
             FillNetwork();
+        }
+
+        private void button_AutoTrain_Click(object sender, EventArgs e)
+        {
+            int stepsCounter = 0;
+            double tmpError = 0;
+            double error, maxNumber, trainCoef;
+
+            if (!GetNetwork()
+                || !double.TryParse(textBox_trainError.Text, out error)
+                || !double.TryParse(textBox_trainMaxSteps.Text, out maxNumber)
+                || !double.TryParse(textBox_trainCoef.Text, out trainCoef))
+            {
+                MessageBox.Show("Wrong network data!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            do
+            {
+                tmpError = 0;
+
+                foreach (string data in textBox_trainData.Lines)
+                {
+                    string[] values = data.Split(' ');
+
+                    textBox_in0.Text = values[0];
+                    textBox_in1.Text = values[1];
+
+                    button_Calculate_Click(null, null);
+
+                    double result;
+                    if (!double.TryParse(values[2], out result))
+                    {
+                        MessageBox.Show("Wrong network data!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    _net.Calculate();
+
+                    stepsCounter++;
+                    tmpError += 0.5 * Math.Pow((result - _net.Output), 2);
+
+                    _net.Train(result, trainCoef);
+                    _net.Calculate();
+                    FillNetwork();
+
+                }
+            }
+            while (tmpError > error && stepsCounter < maxNumber);
         }
     }
 
