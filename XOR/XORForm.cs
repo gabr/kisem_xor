@@ -186,6 +186,9 @@ namespace XOR
                     sw.WriteLine(string.Format(format, tmp.weights[0], tmp.weights[1], tmp.weights[2]));
                 }
 
+                foreach (string line in textBox_trainData.Lines)
+                    sw.WriteLine(line);
+
                 sw.Close();
             }
         }
@@ -209,6 +212,15 @@ namespace XOR
 
                     _net.SetNeuron(i, weights);
                 }
+
+                textBox_trainData.Clear();
+
+                List<string> trainData = new List<string>();
+                while (!sr.EndOfStream)
+                    trainData.Add(sr.ReadLine());
+
+                textBox_trainData.Lines = trainData.ToArray<string>();
+
             }
 
             _net.Calculate();
