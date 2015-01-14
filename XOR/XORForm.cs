@@ -157,15 +157,16 @@ namespace XOR
 
         private void button_Train_Click(object sender, EventArgs e)
         {
-            double result;
-            if (!GetNetwork() || !double.TryParse(textBox_n2out.Text, out result))
+            double result, trainCoef;
+            if (!GetNetwork() || !double.TryParse(textBox_result.Text, out result) || !double.TryParse(textBox_trainCoef.Text, out trainCoef))
             {
                 MessageBox.Show("Wrong network data!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             _net.Calculate();
-            //_net.Train(result);
+            _net.Train(result, trainCoef);
+            _net.Calculate();
             FillNetwork();
         }
 
@@ -315,6 +316,25 @@ namespace XOR
             }
         }
 
+        public void Train(double result, double p)
+        {
+            // learning coef
+            double delta;
+
+            for (int i = 5; i >= 3; i--)
+            {
+                if (i == 5)
+                    delta = (result - u[i]) * Derivative(i);
+                else
+                    delta = w[i, 5] * (result - u[5]) * Derivative(5) * Derivative(i);
+
+                var indexes = _connections.Where(t => t.Item2 == i).Select(t => t.Item1).ToList<int>();
+
+                foreach (int index in indexes)
+                    w[index, i] += p * delta * u[index];
+            }
+        }
+
         public Neuron GetNeuron(int neuronIndex)
         {
             if (neuronIndex < 0 || neuronIndex > 2)
@@ -355,5 +375,9 @@ namespace XOR
             return 1.0 / (1 + Math.Exp(-sum));
         }
 
+        private double Derivative(int index)
+        {
+            return u[index] * (1 - u[index]);
+        }
     }
 }
