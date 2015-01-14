@@ -186,6 +186,8 @@ namespace XOR
                     sw.WriteLine(string.Format(format, tmp.weights[0], tmp.weights[1], tmp.weights[2]));
                 }
 
+                sw.WriteLine(string.Format(format, textBox_trainError.Text, textBox_trainCoef.Text, textBox_trainMaxSteps.Text));
+
                 foreach (string line in textBox_trainData.Lines)
                     sw.WriteLine(line);
 
@@ -213,6 +215,13 @@ namespace XOR
                     _net.SetNeuron(i, weights);
                 }
 
+                line = sr.ReadLine();
+                string[] config = line.Split(' ');
+
+                textBox_trainError.Text = config[0];
+                textBox_trainCoef.Text = config[1];
+                textBox_trainMaxSteps.Text = config[2];
+
                 textBox_trainData.Clear();
 
                 List<string> trainData = new List<string>();
@@ -233,8 +242,7 @@ namespace XOR
             double tmpError = 0;
             double error, maxNumber, trainCoef;
 
-            if (!GetNetwork()
-                || !double.TryParse(textBox_trainError.Text, out error)
+            if (   !double.TryParse(textBox_trainError.Text, out error)
                 || !double.TryParse(textBox_trainMaxSteps.Text, out maxNumber)
                 || !double.TryParse(textBox_trainCoef.Text, out trainCoef))
             {
@@ -250,30 +258,44 @@ namespace XOR
                 {
                     string[] values = data.Split(' ');
 
-                    textBox_in0.Text = values[0];
-                    textBox_in1.Text = values[1];
+                    double tmp;
+                    double[] inputs = new double[2];
 
-                    button_Calculate_Click(null, null);
+                    if (!double.TryParse(values[0], out tmp))
+                    {
+                        MessageBox.Show("Wrong network data!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    inputs[0] = tmp;
 
-                    double result;
-                    if (!double.TryParse(values[2], out result))
+                    if (!double.TryParse(values[1], out tmp))
+                    {
+                        MessageBox.Show("Wrong network data!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                    inputs[1] = tmp;
+
+
+                    if (!double.TryParse(values[2], out tmp))
                     {
                         MessageBox.Show("Wrong network data!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
+                    _net.Inputs = inputs;
                     _net.Calculate();
 
                     stepsCounter++;
-                    tmpError += 0.5 * Math.Pow((result - _net.Output), 2);
+                    tmpError += 0.5 * Math.Pow((tmp - _net.Output), 2);
 
-                    _net.Train(result, trainCoef);
-                    _net.Calculate();
-                    FillNetwork();
+                    _net.Train(tmp, trainCoef);
 
                 }
             }
             while (tmpError > error && stepsCounter < maxNumber);
+
+            _net.Calculate();
+            FillNetwork();
         }
     }
 
@@ -379,21 +401,40 @@ namespace XOR
 
         public void Train(double result, double p)
         {
-            // learning coef
-            double delta;
+            double delta5;
+            double delta4;
+            double delta3;
 
-            for (int i = 5; i >= 3; i--)
-            {
-                if (i == 5)
-                    delta = (result - u[i]) * Derivative(i);
-                else
-                    delta = w[i, 5] * (result - u[5]) * Derivative(5) * Derivative(i);
+            delta5 = (result - u[5]) * Derivative(5);
+            delta4 = w[4, 5] * delta5 * Derivative(4);
+            delta3 = w[3, 5] * delta5 * Derivative(3);
 
-                var indexes = _connections.Where(t => t.Item2 == i).Select(t => t.Item1).ToList<int>();
+            w[3, 5] += p * delta5 * u[3];
+            w[4, 5] += p * delta5 * u[4];
+            w[0, 5] += p * delta5 * u[0];
 
-                foreach (int index in indexes)
-                    w[index, i] += p * delta * u[index];
-            }
+            w[2, 3] += p * delta3 * u[2];
+            w[1, 3] += p * delta3 * u[1];
+            w[0, 3] += p * delta3 * u[0];
+
+            w[2, 4] += p * delta4 * u[2];
+            w[1, 4] += p * delta4 * u[1];
+            w[0, 4] += p * delta4 * u[0];
+
+            //double delta;
+
+            //for (int i = 5; i >= 3; i--)
+            //{
+            //    if (i == 5)
+            //        delta = (result - u[i]) * Derivative(i);
+            //    else
+            //        delta = w[i, 5] * (result - u[5]) * Derivative(5) * Derivative(i);
+
+            //    var indexes = _connections.Where(t => t.Item2 == i).Select(t => t.Item1).ToList<int>();
+
+            //    foreach (int index in indexes)
+            //        w[index, i] += p * delta * u[index];
+            //}
         }
 
         public Neuron GetNeuron(int neuronIndex)
@@ -439,6 +480,7 @@ namespace XOR
         private double Derivative(int index)
         {
             return u[index] * (1 - u[index]);
+            //return Math.Exp(S[index]) / Math.Pow(Math.Exp(S[index] + 1), 2);
         }
     }
 }
