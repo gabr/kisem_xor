@@ -401,40 +401,20 @@ namespace XOR
 
         public void Train(double result, double p)
         {
-            double delta5;
-            double delta4;
-            double delta3;
+            double delta;
 
-            delta5 = (result - u[5]) * Derivative(5);
-            delta4 = w[4, 5] * delta5 * Derivative(4);
-            delta3 = w[3, 5] * delta5 * Derivative(3);
+            for (int i = 5; i >= 3; i--)
+            {
+                if (i == 5)
+                    delta = (result - u[i]) * Derivative(i);
+                else
+                    delta = w[i, 5] * (result - u[5]) * Derivative(5) * Derivative(i);
 
-            w[3, 5] += p * delta5 * u[3];
-            w[4, 5] += p * delta5 * u[4];
-            w[0, 5] += p * delta5 * u[0];
+                var indexes = _connections.Where(t => t.Item2 == i).Select(t => t.Item1).ToList<int>();
 
-            w[2, 3] += p * delta3 * u[2];
-            w[1, 3] += p * delta3 * u[1];
-            w[0, 3] += p * delta3 * u[0];
-
-            w[2, 4] += p * delta4 * u[2];
-            w[1, 4] += p * delta4 * u[1];
-            w[0, 4] += p * delta4 * u[0];
-
-            //double delta;
-
-            //for (int i = 5; i >= 3; i--)
-            //{
-            //    if (i == 5)
-            //        delta = (result - u[i]) * Derivative(i);
-            //    else
-            //        delta = w[i, 5] * (result - u[5]) * Derivative(5) * Derivative(i);
-
-            //    var indexes = _connections.Where(t => t.Item2 == i).Select(t => t.Item1).ToList<int>();
-
-            //    foreach (int index in indexes)
-            //        w[index, i] += p * delta * u[index];
-            //}
+                foreach (int index in indexes)
+                    w[index, i] += p * delta * u[index];
+            }
         }
 
         public Neuron GetNeuron(int neuronIndex)
