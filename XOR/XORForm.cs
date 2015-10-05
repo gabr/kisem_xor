@@ -295,7 +295,9 @@ namespace XOR
             _net.Calculate();
             FillNetwork();
 
-            MessageBox.Show("Finished by reaching " + (tmpError <= error ? "min error" : "max num of steps"), "End", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show("Finished by reaching "
+                + (tmpError <= error ? "min error" : "max num of steps")
+                + "\nNumber of iterations: " + stepsCounter, "End", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
     }
 
